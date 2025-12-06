@@ -1,8 +1,6 @@
 ---
-import {getCollection} from "astro:content";
-import { collectionNames } from '../content-config';
-const authors = await getCollection("authors");
-console.log(collectionNames); // ["blog", "docs"]
+import { getCollection } from "astro:content";
+import Posts from "../layouts/posts.astro";
 ---
 
 <html lang="en">
@@ -11,10 +9,10 @@ console.log(collectionNames); // ["blog", "docs"]
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<link rel='stylesheet' href='/src/styles/global.css'>
-		<title>Astro</title>
+		<link rel="stylesheet" href="/src/styles/global.css" />
+		<title>IMS-Stack</title>
 	</head>
-	<body class='bg-black text-fuchsia-500 flex justify-center items-center h-screen'>
-		<h1>Astro</h1>
+	<body class="bg-black h-screen">
+		<Posts />
 	</body>
 </html>
