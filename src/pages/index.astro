@@ -1,5 +1,8 @@
 ---
-
+import {getCollection} from "astro:content";
+import { collectionNames } from '../content-config';
+const authors = await getCollection("authors");
+console.log(collectionNames); // ["blog", "docs"]
 ---
 
 <html lang="en">
