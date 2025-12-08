@@ -1,0 +1,33 @@
+[
+  {
+    "id": "jerome-bachmann",
+    "name": "Jerome Bachmann",
+    "nickname": "ScriptSorcerer20",
+    "description": "A programmer",
+    "tags": [
+      "Python",
+      "JS"
+    ],
+    "posts": [
+      "how-to-delete-a-repo"
+    ],
+    "github": "https://github.com/scriptsorcerer20"
+  },
+  {
+    "id": "lorenzo-bonometti",
+    "name": "Lorenzo Bonometti",
+    "nickname": "Poisonlocket",
+    "description": "Quacking Code",
+    "tags": [
+      "Python",
+      "JS",
+      "TS",
+      "Golang",
+      "Docker"
+    ],
+    "posts": [
+      "how-to-dockerize-an-application"
+    ],
+    "github": "https://github.com/poisonlocket"
+  }
+]
