@@ -1,0 +1,64 @@
+---
+import { Picture } from "astro:assets";
+import { getCollection, getEntry } from "astro:content";
+
+const posts = await getCollection("posts");
+
+async function resolveAuthor(ref: (typeof posts)[number]["data"]["author"]) {
+    return await getEntry(ref);
+}
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {
+        await Promise.all(
+            posts.map(async (post) => {
+                const author = await resolveAuthor(post.data.author);
+
+                return (
+                    <article class="card bg-base-100 shadow-xl border border-base-200 h-full flex flex-col">
+                        <figure class="relative h-48 w-full overflow-hidden">
+                            <Picture
+                                src={post.data.image}
+                                alt={post.data.title}
+                                width="600"
+                                height="400"
+                                loading="lazy"
+                                class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                            />
+                        </figure>
+
+                        <div class="card-body flex flex-col flex-grow">
+                            <h2 class="card-title text-lg font-semibold line-clamp-2">
+                                {post.data.title}
+                            </h2>
+
+                            <p class="text-sm opacity-80 line-clamp-3">
+                                {post.data.description}
+                            </p>
+
+                            <div class="mt-3 flex flex-wrap gap-2">
+                                {post.data.tags.map((tag) => (
+                                    <div class="badge badge-outline">{tag}</div>
+                                ))}
+                            </div>
+
+                            <div class="card-actions justify-between items-center mt-4">
+                                <span class="text-xs opacity-70">
+                                    {post.data.pubDate.toLocaleDateString(
+                                        "de-DE",
+                                    )}
+                                </span>
+
+                                <p class="text-xs text-right text-blue-500 opacity-70">
+                                    By: {author.data.name} (
+                                    {author.data.nickname})
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                );
+            }),
+        )
+    }
+</div>
