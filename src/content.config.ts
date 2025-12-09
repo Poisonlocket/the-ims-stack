@@ -17,6 +17,18 @@ const authors = defineCollection({
     }),
 });
 
+const posts = defineCollection({
+    loader: glob({ pattern: "**/*.md", base: "src/content/posts" }),
+    schema: z.object({
+        title: z.string(),
+        description: z.string(),
+        pubDate: z.coerce.date(),
+        updatedDate: z.coerce.date().optional(),
+        author: reference('authors'),
+        image: z.string().optional(),
+    })
+});
+
 
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = {"authors": authors };
+export const collections = { "authors": authors, posts };
