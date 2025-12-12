@@ -22,8 +22,10 @@ const imgsrc = images[post.data.image]
             />
         </figure>
         <div class='card-body'>
-            <h2 class='card-title'>
+            <h2 class='card-title hover:underline'>
+                <a href=`https://localhost:4321/post/${post.id}`>
                 {post.data.title}
+                </a>
             </h2>
             <p>{post.data.description}</p>
             <div class='card-actions justify-end'>
