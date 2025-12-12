@@ -7,7 +7,8 @@ do  a description later
 - Tailwindcss
 - Daisyui
 - Pnpm
-- MDX
+- MD
+  
 
 # Branching
 - Main -> for prod release
