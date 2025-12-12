@@ -1,9 +1,10 @@
 ---
 import {Image} from "astro:assets";
-import {getEntry} from "astro:content";
+import {getCollection, getEntry} from "astro:content";
 import Tag from "./tag.astro";
 const {post_prop} = Astro.props;
 const post = await getEntry("posts", post_prop);
+const post_list = await getCollection("posts")
 const images = import.meta.glob('../assets/*.{jpg,jpeg,png,webp}', {
     eager: true,
     import: 'default'
@@ -12,30 +13,30 @@ const imgsrc = images[post.data.image]
 ---
 
 <div class='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-    <div class='card bg-base-100 w-96 shadow-sm'>
-        <figure>
-            <Image
-                    src={imgsrc}
-                    alt='Shoes'
-                    height={120}
-                    width={400}
-            />
-        </figure>
-        <div class='card-body'>
-            <h2 class='card-title hover:underline'>
-                <a href=`https://localhost:4321/post/${post.id}`>
-                {post.data.title}
-                </a>
-            </h2>
-            <p>{post.data.description}</p>
-            <div class='card-actions justify-end'>
-                {
-                    post.data.tags.map(tag => (
-                                    <Tag tag={tag}></Tag>
-                        )
-                    )
-                }
-            </div>
-        </div>
+  <div class='card bg-base-100 w-96 shadow-sm'>
+    <figure>
+      <Image
+        src={imgsrc}
+        alt='Shoes'
+        height={120}
+        width={400}
+      />
+    </figure>
+    <div class='card-body'>
+      <h2 class='card-title hover:underline'>
+        <a href=`https://localhost:4321/post/${post.id}`>
+            {post.data.title}
+        </a>
+      </h2>
+      <p>{post.data.description}</p>
+      <div class='card-actions justify-end'>
+          {
+              post.data.tags.map(tag => (
+                  <Tag tag={tag}></Tag>
+                  )
+              )
+          }
+      </div>
     </div>
+  </div>
 </div>

@@ -1,6 +1,10 @@
 ---
 import Post from "../components/post_card.astro";
 import Tag from "../components/tag.astro";
+import Post_layout from "../layouts/post_layout.astro";
+import {getCollection} from "astro:content";
+const posts = await getCollection("posts")
+console.log(posts)
 ---
 
 <html lang="en">
@@ -15,5 +19,6 @@ import Tag from "../components/tag.astro";
 	<body class="bg-black">
 		<h1 class="text-white p-4 text-center text-6xl">IMS-Stack</h1>
 		<Post post_prop='how-to-build-a-blog' />
+	<Post_layout post_prop='how-to-build-a-blog' ></Post_layout>
 	</body>
 </html>
