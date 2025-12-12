@@ -4,7 +4,7 @@ import {getEntry} from "astro:content";
 import Tag from "./tag.astro";
 const {post_prop} = Astro.props;
 const post = await getEntry("posts", post_prop);
-const images = import.meta.glob('../images/*.{jpg,jpeg,png,webp}', {
+const images = import.meta.glob('../assets/*.{jpg,jpeg,png,webp}', {
     eager: true,
     import: 'default'
 });
