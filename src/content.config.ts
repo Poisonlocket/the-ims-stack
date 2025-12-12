@@ -23,12 +23,12 @@ const posts = defineCollection({
         title: z.string(),
         description: z.string(),
         pubDate: z.coerce.date(),
-        updatedDate: z.coerce.date().optional(),
-        author: reference('authors'),
+        authors: z.array(z.string().max(50)),
         image: z.string().optional(),
+        tags: z.array(z.string()).optional()
     })
 });
 
 
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = { "authors": authors, posts };
+export const collections = { authors, posts };
