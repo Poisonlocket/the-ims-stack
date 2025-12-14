@@ -12,7 +12,7 @@ const images = import.meta.glob('../assets/*.{jpg,jpeg,png,webp}', {
     import: 'default'
 });
 
-const post_image: ImageMetadata = images[post.data.image];
+const post_image = images[post.data.image];
 ---
 
 <div class='hero bg-base-200 min-h-screen'>
@@ -25,10 +25,11 @@ const post_image: ImageMetadata = images[post.data.image];
             alt={post.data.title}
             width={300}
             height={800}>
-
         </Image>
       </figure>
-      <slot/>
+
     </div>
+
   </div>
+  <slot/>
 </div>

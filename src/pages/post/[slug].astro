@@ -1,28 +1,36 @@
 ---
-import {getCollection, render} from "astro:content";
+import {getCollection, getEntry, render} from "astro:content";
 import Post_layout from "../../layouts/post_layout.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
+    const posts = await getCollection("posts");
 
-  const paths = posts.map(post => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+    const paths = posts.map(post => ({
+        params: {slug: post.id},
+    }));
 
-  console.log("Generated static paths:", paths);
+    console.log("Generated static paths:", paths);
 
-  return paths;
+    return paths;
 }
-const { post } = Astro.props
+const {slug} = Astro.params;
+const post = await getEntry("posts", slug)
 
-if (!post || typeof post === undefined) {
-  throw new Error('Could not find blog post 1');
+if (!post) {
+    throw new Error('Could not find blog post 1');
 }
-const data = render(post.body)
-console.log(data)
-console.log(post)
+
+const {Content} = await render(post)
+console.log(Content)
 ---
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <title>IMS-Stack</title>
+</head>
 <Post_layout post={post}>
-  {data}
+    <Content/>
 </Post_layout>

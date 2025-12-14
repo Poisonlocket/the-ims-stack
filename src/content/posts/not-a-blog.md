@@ -6,10 +6,4 @@ authors: ["jerome-bachmann"]
 image: "../assets/img.png"
 tags: ["testing", "astro", "sample", "astro"]
 ---
-abasdfasdfasdfasdf
-
-* abc
-* asdfasdf
-* asdf
-
-<hr>
+notablog
