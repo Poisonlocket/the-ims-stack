@@ -9,7 +9,6 @@ export async function getStaticPaths() {
         params: {slug: post.id},
     }));
 
-    console.log("Generated static paths:", paths);
 
     return paths;
 }
@@ -23,6 +22,7 @@ if (!post) {
 const {Content} = await render(post)
 console.log(Content)
 ---
+<html>
 <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -31,6 +31,8 @@ console.log(Content)
     <link rel="stylesheet" href="/src/styles/global.css" />
     <title>IMS-Stack</title>
 </head>
-<Post_layout post={post}>
-    <Content/>
+<div class='bg-base-300'>
+<Post_layout class='' post={post}>
+    <Content  />
 </Post_layout>
+</div></html>

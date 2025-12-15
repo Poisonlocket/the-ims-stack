@@ -1,0 +1,129 @@
+@layer components {
+    .markdown {
+        @apply mx-auto
+        w-full
+        max-w-[95vw] sm:max-w-[90vw] lg:max-w-[80ch] xl:max-w-[85ch]
+        px-4 sm:px-0
+        text-justify
+        text-base-content
+        text-[0.95rem] sm:text-base
+        leading-relaxed;
+    }
+
+    /* Headings */
+    .markdown h1 {
+        @apply text-3xl sm:text-4xl
+        font-bold
+        mt-10 sm:mt-12 mb-6
+        leading-tight;
+    }
+
+    .markdown h2 {
+        @apply text-2xl sm:text-3xl
+        font-bold
+        mt-8 sm:mt-10 mb-4
+        border-b border-base-300 pb-2;
+    }
+
+    .markdown h3 {
+        @apply text-xl sm:text-2xl
+        font-semibold
+        mt-7 sm:mt-8 mb-3;
+    }
+
+    .markdown h4 {
+        @apply text-lg sm:text-xl
+        font-semibold
+        mt-6 mb-2;
+    }
+
+    /* Paragraphs */
+    .markdown p {
+        @apply my-4 sm:my-5;
+    }
+
+    /* Links */
+    .markdown a {
+        @apply link link-primary;
+    }
+
+    /* Lists */
+    .markdown ul {
+        @apply list-disc pl-5 sm:pl-6 my-4 sm:my-5;
+    }
+
+    .markdown ol {
+        @apply list-decimal pl-5 sm:pl-6 my-4 sm:my-5;
+    }
+
+    .markdown li {
+        @apply my-1;
+    }
+
+    /* Blockquotes */
+    .markdown blockquote {
+        @apply my-6
+        pl-4 py-3
+        border-l-4 border-primary
+        bg-base-200
+        rounded-lg
+        text-base-content/80;
+    }
+
+    /* Code */
+    .markdown pre {
+        @apply my-6
+        p-3 sm:p-4
+        rounded-xl
+        bg-base-200
+        overflow-x-auto
+        text-sm
+        text-left;
+    }
+
+    .markdown code {
+        @apply px-1.5 py-0.5
+        rounded
+        bg-base-200
+        text-sm
+        text-left;
+    }
+
+    .markdown pre code {
+        @apply p-0 bg-transparent text-left;
+    }
+
+    /* Images */
+    .markdown img {
+        @apply my-6 sm:my-8 rounded-xl max-w-full;
+    }
+
+    /* Horizontal rule */
+    .markdown hr {
+        @apply my-10 sm:my-12 border-base-300;
+    }
+
+    /* Tables */
+    .markdown table {
+        @apply w-full
+        my-6 sm:my-8
+        border border-base-300
+        rounded-lg
+        overflow-x-auto
+        text-sm
+        block sm:table;
+    }
+
+    .markdown th {
+        @apply bg-base-200 text-left font-semibold px-3 py-2;
+    }
+
+    .markdown td {
+        @apply border-t border-base-300 px-3 py-2;
+    }
+
+    /* Remove top margin for first element */
+    .markdown > *:first-child {
+        @apply mt-0;
+    }
+}
