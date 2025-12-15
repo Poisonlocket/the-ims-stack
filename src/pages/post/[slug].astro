@@ -1,6 +1,8 @@
 ---
 import {getCollection, getEntry, render} from "astro:content";
 import Post_layout from "../../layouts/post_layout.astro";
+import {Image} from "astro:assets"
+import Tag from "../../components/tag.astro";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
@@ -19,20 +21,48 @@ if (!post) {
     throw new Error('Could not find blog post 1');
 }
 
+const images = import.meta.glob('../../assets/*.{jpg,jpeg,png,webp}', {
+    eager: true,
+    import: 'default'
+});
+
+console.log(images)
+const slug_post_image = "../" + post.data.image
+console.log(slug_post_image)
+const post_image = images[slug_post_image];
+console.log(post_image)
+
 const {Content} = await render(post)
-console.log(Content)
 ---
 <html>
 <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <link rel="stylesheet" href="/src/styles/global.css" />
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="generator" content={Astro.generator}/>
+    <link rel="stylesheet" href="/src/styles/global.css"/>
     <title>IMS-Stack</title>
 </head>
 <div class='bg-base-300'>
-<Post_layout class='' post={post}>
-    <Content  />
-</Post_layout>
-</div></html>
+    <div class="mx-auto max-w-3xl pt-4 pb-8 pb-8">
+        <Image
+                src={post_image}
+                alt="Photo"
+                widths={[320, 640, 1024, 1600]}
+                sizes="(max-width: 768px) 100vw, 768px"
+                class="w-full h-auto rounded-xl shadow-md"
+        />
+    </div>
+    <div class='card-actions justify-end'>
+        {
+            post.data.tags.map(tag => (
+                            <Tag tag={tag}></Tag>
+                )
+            )
+        }
+    </div>
+    <Post_layout class='' post={post} >
+        <Content/>
+    </Post_layout>
+</div>
+</html>
