@@ -1,6 +1,10 @@
 ---
 import Post from "../components/post_card.astro";
 import Tag from "../components/tag.astro";
+import Post_layout from "../layouts/post_layout.astro";
+import {getCollection} from "astro:content";
+const posts = await getCollection("posts")
+console.log(posts)
 ---
 
 <html lang="en">
