@@ -32,15 +32,12 @@ const images = import.meta.glob('../../assets/*.{jpg,jpeg,png,webp}', {
     import: 'default'
 });
 
-console.log(images)
 const slug_post_image = "../" + post.data.image
-console.log(slug_post_image)
 const post_image = images[slug_post_image];
-console.log(post_image)
 function WordCount(str: string) {
     return str.split(" ").length;
 }
-
+console.log(post_image)
 
 const {Content} = await render(post)
 const reading_time = Math.round(WordCount(post.body) / 200)

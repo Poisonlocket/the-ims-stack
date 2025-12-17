@@ -4,6 +4,7 @@
     "name": "Jerome Bachmann",
     "nickname": "ScriptSorcerer20",
     "description": "A programmer",
+    "profile_image_url": "../../assets/fi.png",
     "tags": [
       "Python",
       "JS"
@@ -18,6 +19,8 @@
     "name": "Lorenzo Bonometti",
     "nickname": "Poisonlocket",
     "description": "Quacking Code",
+    "profile_image_url": "../../assets/fi.png",
+
     "tags": [
       "Python",
       "JS",

@@ -1,0 +1,55 @@
+---
+import Image from "astro/components/Image.astro";
+import {getCollection, getEntry} from "astro:content";
+export async function getStaticPaths() {
+    const authors = await getCollection("authors");
+
+    const paths = authors.map(author => ({
+        params: {slug: author.id},
+    }));
+    return paths;
+}
+
+const {slug} = Astro.params;
+const author = await getEntry("authors", slug)
+
+if (!author) {
+    throw new Error('Could not find author on author page');
+}
+
+const images = import.meta.glob('../../assets/*.{jpg,jpeg,png,webp}', {
+    eager: true,
+    import: 'default'
+});
+
+const author_image = images[author.data.profile_image_url];
+---
+<head>
+    <meta charset='utf-8'/>
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg'/>
+    <meta name='viewport' content='width=device-width'/>
+    <meta name='generator' content={Astro.generator}/>
+    <link rel='stylesheet' href='/src/styles/global.css'/>
+    <title>IMS-Stack</title>
+</head>
+<div class="hero bg-base-200 min-h-screen">
+    <div class="hero-content flex-col lg:flex-row">
+        <figure>
+        <Image
+                src={author_image}
+                class="max-w-sm rounded-lg shadow-2xl"
+                height={300}
+                width={300}
+                alt='alt'
+        />
+        </figure>
+        <div>
+            <h1 class="text-5xl font-bold">Box Office News!</h1>
+            <p class="py-6">
+                Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
+                quasi. In deleniti eaque aut repudiandae et a id nisi.
+            </p>
+            <button class="btn btn-primary">Get Started</button>
+        </div>
+    </div>
+</div>

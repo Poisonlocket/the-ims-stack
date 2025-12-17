@@ -9,6 +9,7 @@ const authors = defineCollection({
         name: z.string().max(50),
         nickname: z.string().max(50),
         description: z.string().max(100),
+        profile_image_url: z.string().max(100),
         tags: z.array(z.string()),
         posts: z.array(z.string()),
         github: z.string().max(100),
